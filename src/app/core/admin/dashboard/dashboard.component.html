@@ -1,0 +1,84 @@
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-lg-12 col-sm-12 align-self-center">
+            <ul class="list-inline panel-breadcrumb">
+              <li class="list-inline-item pointer" [routerLink]="['/']">سامانه تسهیلات آموزش و پرورش ناحیه یک خرم آباد
+              </li>
+              <li class="list-inline-item pointer" [routerLink]="['/admin']">پنل مدیریت</li>
+              <li class="list-inline-item current">صفحه اصلی</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row support" *ngIf="requestCount>0 && LoanCount>0">
+  <div class="col-lg-3 col-md-6 mt-1">
+    <a class="support-item" [routerLink]="['/admin/employee']">
+      <i class="pi pi-users"></i>
+      <div class="text">
+        <h5 class="purecounter">مدیریت پرسنل</h5>
+        <p> تعداد پرسنل {{employeeCount | number}}</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-6 mt-1">
+    <a class="support-item" [routerLink]="['/admin/loan']">
+      <i class="pi pi-dollar"></i>
+      <div class="text">
+        <h5 class="purecounter">مدیریت تسهیلات</h5>
+        <p>تعداد تسهیلات جاری {{LoanCount | number}} </p>
+      </div>
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-6 mt-1">
+    <a class="support-item" [routerLink]="['/admin/request']">
+      <i class="pi pi-inbox"></i>
+      <div class="text">
+        <h5 class="purecounter">مدیریت درخواست ها</h5>
+        <p>تعداد درخواست ها {{requestCount | number}} </p>
+      </div>
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-6 mt-1">
+    <a class="support-item" [routerLink]="['/admin/lottery']">
+      <i class="pi pi-star"></i>
+      <div class="text">
+        <h5 class="purecounter">مدیریت قرعه کشی</h5>
+        <p>مدیریت قرعه کشی</p>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="pnl-content p-3" *ngIf="spinnerSuccess">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box text-center ">
+        <p-progressSpinner *ngIf="spinnerSuccess" [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+          strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s">
+        </p-progressSpinner>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row cards" *ngIf="requestCount>0 && LoanCount>0">
+  <div class="col-lg-6 mb-3">
+    <div class="card">
+      <h5>تعداد تسهیلات</h5>
+      <p-chart type="doughnut" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}">
+      </p-chart>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <h5>تعداد درخواست ها</h5>
+      <p-chart type="pie" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}">
+      </p-chart>
+    </div>
+  </div>
+</div>

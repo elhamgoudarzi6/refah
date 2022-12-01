@@ -1,0 +1,78 @@
+<p-toast position="center" [style]="{width: '40%'}"></p-toast>
+
+<div class="px-3 pt-5">
+  <div class="theme-container">
+    <div class="row justify-content-center">
+      <div class="card">
+        <div class="row justify-content-center text-center">
+          <div class="col-12 mb-3">
+            <img class="img-fluid header" src="../../../../assets/images/header.png"
+              alt="سامانه ثبت نام آنلاین تسهیلات بانکی آموزش و پرورش ناحیه یک خرم آباد">
+          </div>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <div class="row justify-content-center">
+            <div class="col-12 mt-3">
+              <span class="p-input-icon-right w-100">
+                <i class="pi pi-user"></i>
+                <input pKeyFilter="int" class="form-control" formControlName="personalCode" name="personalCode"
+                  pInputText placeholder="کد پرسنلی" required />
+              </span>
+              <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.personalCode">
+                <li class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    " *ngIf="
+                      form.get('personalCode').hasError(error.type) &&
+                      (form.get('personalCode').dirty || form.get('personalCode').touched)
+                    ">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 mt-2">
+              <span class="p-input-icon-right w-100">
+                <i class="pi pi-key"></i>
+                <input pKeyFilter="int" maxlength="10" minlength="10" type="password" class="form-control"
+                  formControlName="password" name="password" pInputText placeholder="کد ملی" required />
+              </span>
+              <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.password">
+                <li class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    " *ngIf="
+                      form.get('password').hasError(error.type) &&
+                      (form.get('password').dirty || form.get('password').touched)
+                    ">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 mt-4 mb-3 text-center">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid"> ورود </button>
+            </div>
+          </div>
+
+        </form>
+        <footer class="page-footer mt-2">
+          <div class="footer text-center p-2">
+            <div>
+              <span>تمامی حقوق مادی و معنوی این سایت متعلق به آموزش و پرورش ناحیه یک شهرستان خرم آباد می باشد. </span>
+            </div>
+            <div>
+              <span>طراحی و پیاده سازی شرکت ایده پردازان پارس آراد
+                <a target="_blank" href="https://www.apprad.ir">www.apprad.ir</a>
+              </span>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+    </div>
+
+  </div>
+</div>

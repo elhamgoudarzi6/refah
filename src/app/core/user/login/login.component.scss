@@ -1,0 +1,105 @@
+.card {
+  background-color: #fff;
+  box-shadow: 0px 8px 5px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 3px solid #007bff;
+  border-radius: 10px !important;
+}
+
+form {
+  padding: 5px 30px 20px;
+  margin: 10px 20%;
+}
+
+
+.header {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    margin: 0 10px;
+  }
+
+  form {
+    padding: 20px;
+    margin: 10px 5%;
+  }
+}
+
+ul li {
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+:host::ng-deep .p-password,
+:host::ng-deep .p-password input {
+  width: 100%;
+}
+
+:host::ng-deep .p-password-panel .p-password-info {
+  width: 100% !important;
+  text-align: right !important;
+  font-family: IRANSans_Light !important;
+}
+
+.terms-text,
+.terms-text a {
+  font-size: 12px;
+}
+
+.login-link {
+  font-size: 13px;
+}
+
+
+
+:host::ng-deep .p-dialog .p-dialog-content {
+  padding: 1rem 1.5rem 2rem 1.5rem !important;
+}
+
+:host::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-summary {
+  font-size: 16px;
+  font-family: IRANSans_Light !important;
+  margin-right: 5px;
+}
+
+:host::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+  font-size: 16px;
+  font-family: IRANSans_Light !important;
+}
+
+:host::ng-deep .p-toast .p-toast-message.p-toast-message-error .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-error .p-toast-icon-close {
+  margin-left: 5px;
+}
+@media screen and (max-width: 767px) {
+  :host::ng-deep .p-toast {
+    width: 90% !important;
+  }
+}
+.page-footer {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-family: IRANSans_Light !important;
+  font-size: 13px;
+  background-color: #007bff;
+  color: #fff;
+}
+
+span a {
+  font-family: IRANSans_Light !important;
+}
+
+.alert {
+  font-family: IRANSansWeb_Bold;
+  font-size: 14px
+}

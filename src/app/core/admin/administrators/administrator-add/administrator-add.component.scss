@@ -1,0 +1,17 @@
+input,
+:host::ng-deep .p-inputtext,
+:host::ng-deep .p-dropdown,
+:host::ng-deep .p-chips,
+.p-inputtext,
+.p-dropdown,
+.p-chips,
+textarea {
+  width: 100% !important;
+}
+
+label {
+  font-size: 18px;
+  color: #444;
+  font-family: IRANSans_Light !important;
+  text-align: right;
+}

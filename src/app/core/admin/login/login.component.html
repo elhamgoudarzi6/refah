@@ -1,0 +1,64 @@
+<p-toast position="center" [style]="{width: '40%'}"></p-toast>
+
+<div class="px-3 pt-5">
+  <div class="theme-container">
+    <div class="row justify-content-center my-5">
+      <div class="card">
+        <div class="container-fluid">
+          <div class="row justify-content-center text-center">
+            <div class="col-12 mb-3">
+              <h1>پنل مدیریت سامانه تسهیلات آموزش و پرورش ناحیه یک خرم آباد</h1>
+            </div>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="login()" class="w-100">
+            <div class="row justify-content-center">
+              <div class="col-12 mt-4">
+                <span class="p-input-icon-right w-100">
+                  <i class="pi pi-user"></i>
+                  <input class="form-control" formControlName="username" name="username" pInputText
+                    placeholder="نام کاربری" required />
+                </span>
+                <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.username">
+                  <li class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    " *ngIf="
+                      form.get('username').hasError(error.type) &&
+                      (form.get('username').dirty || form.get('username').touched)
+                    ">
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-2">
+                <span class="p-input-icon-right w-100">
+                  <i class="pi pi-key"></i>
+                  <input type="password" class="form-control" formControlName="password" name="password" pInputText
+                    placeholder="رمزعبور" required />
+                </span>
+                <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.password">
+                  <li class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    " *ngIf="
+                      form.get('password').hasError(error.type) &&
+                      (form.get('password').dirty || form.get('password').touched)
+                    ">
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-4 mb-3 text-center">
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid"> ورود </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

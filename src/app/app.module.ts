@@ -1,0 +1,43 @@
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { SharedModule } from 'primeng/api';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { StepsModule } from 'primeng/steps';
+import { ToastModule } from 'primeng/toast';
+import { TimelineModule } from "primeng/timeline";
+import { CardModule } from "primeng/card";
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    SharedModule,
+    CarouselModule,
+    StepsModule,
+    ToastModule,
+    TimelineModule,
+    CardModule,
+    NgPersianDatepickerModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+  ], bootstrap: [AppComponent]
+})
+export class AppModule { }

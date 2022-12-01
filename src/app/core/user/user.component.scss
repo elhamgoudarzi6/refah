@@ -1,0 +1,71 @@
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.sidenav {
+  width: 230px;
+  background: #4677c7;
+  border-left: none;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+}
+
+:host::ng-deep.p-panelmenu .p-panelmenu-panel .p-panelmenu-header>a {
+  margin: 5px 15px;
+  font-size: 14px;
+  //font-weight: 500;
+  border-color: transparent;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+  font-family: IRANSans_Light !important;
+  color: #fff !important;
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled)>a:hover,
+:host::ng-deep .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled)>a:hover {
+  background: #f7f7f7;
+  border-radius: 5px;
+  color: #4677c7 !important;
+
+}
+
+
+:host::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+  margin: 5px 20px;
+  border-bottom: 1px solid #fff;
+  font-size: 13px;
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
+  padding-right: 5px;
+}
+
+.profile {
+  border-radius: 60%;
+  max-width: 60px;
+  margin-top: 30px;
+}
+
+:host::ng-deep .mat-divider {
+  border-color: #fff;
+  margin: 0 15px;
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-header>a .p-menuitem-icon,
+:host::ng-deep .p-panelmenu .p-panelmenu-header>a .p-panelmenu-icon {
+  margin-left: 0.5rem;
+}
+
+:host::ng-deep .pi-chevron-right:before {
+  content: "\e900";
+}
+
+:host::ng-deep.p-toolbar {
+  background: #4677c7 !important;
+  height: 70px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+}
+
+h6 {
+  font-size: 14px;
+}

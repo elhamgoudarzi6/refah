@@ -1,0 +1,141 @@
+<p-toast position="center"></p-toast>
+<div class="pnl-content p-3">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-lg-12 col-sm-12 align-self-center">
+                        <ul class="list-inline panel-breadcrumb">
+                            <li class="list-inline-item pointer" [routerLink]="['/']">سامانه تسهیلات آموزش و پرورش ناحیه
+                                یک خرم آباد</li>
+                            <li class="list-inline-item pointer" [routerLink]="['/admin']">پنل مدیریت</li>
+                            <li class="list-inline-item current">مدیریت قرعه کشی</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pnl-content p-3">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="alert alert-info text-center">
+                    برای انجام قرعه کشی، ابتدا عنوان تسهیلات
+                    مورد نظر خود را انتخاب سپس تعداد را وارد در نهایت دکمه قرعه کشی کلیک نمایید.
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12 mb-3 text-right">
+                        <span class="p-fluid">
+                            <p-autoComplete [lazy]="true" [dropdown]="true" (onSelect)="onSelectLoan($event)"
+                                (onClear)="onSelectLoan($event)" [suggestions]="filteredLoans"
+                                placeholder="انتخاب عنوان تسهیلات" (completeMethod)="filterLoan($event)" field="title">
+                            </p-autoComplete>
+                        </span>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 mb-3 text-center">
+                        <p-inputNumber inputId="integeronly" [(ngModel)]="number" placeholder="تعداد نفرات">
+                        </p-inputNumber>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 mb-3 text-left">
+                        <button pButton type="button" label="قرعه کشی" (click)="onRandomWin()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pnl-content p-3">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="alert alert-info text-center">
+                    برای مشاهده برندگان تسهیلات، عنوان تسهیلات مورد نظر خود را انتخاب نمایید.
+                </div>
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-lg-6 col-sm-12 mb-3 text-center">
+                        <span class="p-fluid">
+                            <p-autoComplete [lazy]="true" [(ngModel)]="loanID" [dropdown]="true"
+                                (onSelect)="onSelectListWin($event)" (onClear)="onSelectListWin($event)"
+                                [suggestions]="filteredLoans" placeholder="انتخاب عنوان تسهیلات"
+                                (completeMethod)="filterLoan($event)" field="title">
+                            </p-autoComplete>
+                        </span>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 mb-3 text-center">
+                        <div class="flex">
+                            <button pButton type="button" [useExistingCss]="true" label="چاپ"
+                                printSectionId="printSectionId" ngxPrint icon="pi pi-print" iconPos="left"></button>
+                            <button pButton type="button" class="mr-2" (click)="exportToExcel()" label="خروجی اکسل"
+                                icon="pi pi-file-excel" iconPos="left"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="printSectionId" #epltable dir="rtl" *ngIf="listWin.length>0">
+                    <p-table #dt [value]="listWin" dataKey="_id" [columns]="cols">
+                        <ng-template pTemplate="caption">
+                            <div class="alert alert-success text-center" role="alert">
+                                لیست برندگان {{title}}
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>ردیف</th>
+                                <th *ngFor="let col of columns; let i = index;">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-i="rowIndex">
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td>{{item.employees.firstName}}</td>
+                                <td>{{item.employees.lastName}}</td>
+                                <td>{{item.employees.personalCode}}</td>
+                                <td>{{item.employees.nationalCode}}</td>
+                                <td>{{item.employees.mobile}}</td>
+                                <td>{{item.loans.title}}</td>
+                                <td>{{item.loans.amount}}</td>
+                                <td>{{item.loans.number}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="display" [style]="{width: '60%'}">
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template pTemplate="content">
+        <div class="alert alert-warning text-center mt-4">
+            توجه: در صورت اطمینان جهت ثبت بر روی دکمه تایید نهایی کلیک کنید پس از تایید امکان قرعه کشی مجدد وجود ندارد
+        </div>
+        <p-table #dt [value]="randomWin" dataKey="_id">
+            <ng-template pTemplate="caption">
+                <div class="alert alert-success text-center" role="alert">
+                    لیست تصادفی برندگان
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">ردیف</th>
+                    <th scope="col">کد پرسنلی</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr class="text-center">
+                    <td>{{i+1}}</td>
+                    <td>{{rowData.personalCode}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="col-12 mt-4 mb-3 text-center">
+            <button pButton type="button" label="تایید نهایی" (click)="onSetFinalWin()"></button>
+        </div>
+    </ng-template>
+</p-dialog>

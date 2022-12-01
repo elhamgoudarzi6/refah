@@ -1,0 +1,153 @@
+<p-toast position="center" [style]="{width: '40%'}"></p-toast>
+<p-confirmDialog [baseZIndex]="10000"></p-confirmDialog>
+
+<div class="pnl-content p-3">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-lg-12 col-sm-12 align-self-center">
+                        <ul class="list-inline panel-breadcrumb">
+                            <li class="list-inline-item pointer" [routerLink]="['/']">سامانه تسهیلات آموزش و پرورش ناحیه
+                                یک خرم آباد
+                            <li class="list-inline-item current">درخواست و نتیجه</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pnl-content p-3">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box text-right">
+                <div *ngIf="request.length==0" class="alert alert-warning text-center">
+                    درخواستی ثبت نشده است </div>
+                <p-table #dt [columns]="cols" [value]="[{}]" *ngIf="request.length!=0">
+                    <ng-template pTemplate="caption">
+                        <div class="alert alert-success text-center">
+                            تسهیلات درخواستی شما </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns; let i = index;">
+                                {{col.header}}
+                            </th>
+                            <th>نتیجه</th>
+                            <th *ngIf="!deadline">حذف درخواست</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                {{request[col.field]}}
+                            </td>
+                            <td *ngIf="!Lock && !resultLottery" class="text-warning">قرعه کشی نشده</td>
+                            <td *ngIf="Lock && resultLottery" class="text-success">برنده</td>
+                            <td *ngIf="Lock && !resultLottery" class="text-danger">رد</td>
+                            <td *ngIf="!deadline">
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-text p-button-danger"
+                                    (click)="deleteRequest()"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pnl-content p-3" *ngIf="Lock && request.length!=0">
+    <div class="row no-gutters">
+        <div class="col-lg-12">
+            <div class="box text-right">
+                <div class="alert alert-warning text-center" *ngIf="Lock && !resultLottery">همکار
+                    گرامی با توجه به
+                    قرعه
+                    کشی
+                    انجام
+                    شده، تسهیلات
+                    مورد نظر به شما تعلق نگرفته است
+                </div>
+                <div class="alert alert-success text-center" *ngIf="Lock && resultLottery">
+                    همگار گرامی با توجه به قرعه کشی انجام شده، جز منتخبین دریافت تسهیلات قرار گرفته اید </div>
+                <div *ngIf="resultLottery && Lock && introduction">
+                    <div class="alert alert-danger text-center">
+                        همکار گرامی ضمن چاپ برگه معرفی، لطفا فقط در تاریخ قید شده به شعبه مربوطه مراجعه فرمایید.</div>
+                    <div class="alert alert-info text-right">
+                        در ضمن هنگام مراجعه مدارک زیر را به همراه داشته باشید:<br>
+                        مدارک وام گیرنده: چاپ معرفی نامه - آخرین حکم و فیش حقوقی - کپی شناسنامه و کارت ملی - تعهدنامه از
+                        حسابداری<br>
+                        مدارک ضامن: آخرین حکم و فیش حقوقی - کپی شناسنامه و کارت ملی - تعهدنامه ضامن از حسابداری
+                    </div>
+                    <div id="printSectionId">
+                        <div class="d-flex flex-column mb-3 text-center">
+                            <div class="p-2 text-center"><img src="./../../../../assets/images/arm.png" />
+                            </div>
+                            <div class="p-2" style="margin-top: -10px">
+                                <label>وزارت آموزش و پرورش</label>
+                            </div>
+                            <div class="p-2" style="margin-top: -20px"><label>اداره کل آموزش و پرورش استان
+                                    لرستان </label></div>
+                            <div class="p-2 d-flex  flex-row " dir="rtl" style="margin-top: -10px">
+
+                                <div style="margin-right:400px;margin-top: -10px;"><label>مدیریت آموزش و پرورش ناحیه یک
+                                        خرم آباد</label>
+                                </div>
+                                <div style="margin-right:40px"><label>تاریخ مراجعه:
+                                        <label>{{resultData.date}}</label></label>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="d-flex flex-row justify-content-center" style="margin-top: -10px">
+                            <div class="p-4 box2">
+                                <h6 class="mt-2 text-center mb-4">باسمه تعالی</h6>
+                                <p class="mb-3 text-justify">از: مدیریت آموزش و پرورش ناحیه یک خرم آباد</p>
+                                <p class="mb-3 text-right">به : {{resultData.branch}}</p>
+                                <p class="mb-3 text-right">موضوع: معرفی نامه تسهیلات</p>
+                                <p class="mb-3 text-right">با سلام و احترام</p>
+                                <p class="mb-3 text-right"> به استحضار می رساند که آقا/خانم : {{firstName}}
+                                    {{lastName}} </p>
+                                <p class="mb-3 text-justify"> با کد پرسنلی {{personalCode}} از کارکنان این مدیریت جهت
+                                    دریافت
+                                    {{request.title}}
+                                    به مبلغ {{request.amount}} {{request.percent}}
+                                    به حضورمعرفی می گردد. شایسته است با توجه به مصوبه ارسالی سرپرستی محترم بانک ملی
+                                    استان مساعدت لازم را در این زمینه مبذول فرمایید.</p>
+                                <div class="mt-5 text-center">
+                                    <p>فرشاد نادری</p>
+                                    <p style="margin-top:-10px">کارشناس مسئول تعاون و امور رفاهی</p>
+                                    <img src="./../../../../assets/images/emza.png"
+                                        style="width: 200px;z-index: 99999;margin-top: -30px">
+                                </div>
+                                <div class="text-center mt-5">لطفاً قبل از تاریخ درج شده در معرفی نامه
+                                    به بانک عامل مراجعه
+                                    ننمایید.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 mt-3 text-center">
+                            <span class="p-2">آدرس : خرم آباد ، میدان مادر ، آموزش و پرورش ناحیه یک خرم آباد
+                                تلفن : 33200465 فکس
+                                33200371
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-5">
+                        <button pButton type="button" [useExistingCss]="true" label="چاپ معرفی نامه"
+                            printSectionId="printSectionId" ngxPrint icon="pi pi-print" iconPos="left"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-5">
+    <p-progressSpinner *ngIf="spinnerSuccess" [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+        strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>

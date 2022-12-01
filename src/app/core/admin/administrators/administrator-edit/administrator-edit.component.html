@@ -1,0 +1,38 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+      <div class="row">
+        <div class="col-lg-6 mb-3">
+          <label class="panel-form-label">نام </label>
+          <input name="firstName" type="text" pInputText formControlName="firstName" />
+          <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.firstName">
+            <li class="font-small text-danger font-weight-bold list-inline-item" *ngIf="
+                form.get('firstName').hasError(error.type) &&
+                (form.get('firstName').dirty || form.get('firstName').touched)">
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="panel-form-label"> نام خانوادگی</label>
+          <input name="lastName" type="text" pInputText formControlName="lastName" />
+          <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.lastName">
+            <li class="font-small text-danger font-weight-bold list-inline-item" *ngIf="
+                form.get('lastName').hasError(error.type) &&
+                (form.get('lastName').dirty || form.get('lastName').touched)">
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button type="submit" pButton label="ویرایش" [disabled]="form.invalid"
+            class="panel-dark-button mt-3"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

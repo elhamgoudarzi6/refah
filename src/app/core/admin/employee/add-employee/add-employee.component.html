@@ -1,0 +1,67 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+    <div class="row pnl-content">
+        <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="personalCode" type="text" pInputText placeholder="کد پرسنلی"
+                        formControlName="personalCode" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.personalCode">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('personalCode').hasError(error.type) && (form.get('personalCode').dirty || form.get('personalCode').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="nationalCode" type="text" maxlength="10" minlength="10" pInputText placeholder="کد ملی"
+                        formControlName="nationalCode" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.nationalCode">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('nationalCode').hasError(error.type) && (form.get('nationalCode').dirty || form.get('nationalCode').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="firstName" type="text" pInputText placeholder="نام" formControlName="firstName" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.firstName">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('firstName').hasError(error.type) && (form.get('firstName').dirty || form.get('firstName').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="lastName" type="text" pInputText placeholder="نام خانوادگی"
+                        formControlName="lastName" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.lastName">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('lastName').hasError(error.type) && (form.get('lastName').dirty || form.get('lastName').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input pKeyFilter="int" formControlName="mobile" maxlength="11" minlength="11" name="mobile"
+                        pInputText placeholder="شماره موبایل" required />
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input pKeyFilter="int" formControlName="phoneNumber" maxlength="11" minlength="11" name="phoneNumber"
+                        pInputText placeholder="تلفن ثابت" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" pButton label=" ثبت " [disabled]="form.invalid"
+                        class="panel-dark-button mt-3"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

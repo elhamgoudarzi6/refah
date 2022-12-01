@@ -1,0 +1,76 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+    <div class="row pnl-content">
+        <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="title" type="text" pInputText placeholder="عنوان تسهیلات" formControlName="title" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.title">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('title').hasError(error.type) && (form.get('title').dirty || form.get('title').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="amount" type="text" pInputText placeholder="مبلغ تسهیلات" formControlName="amount" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.amount">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('amount').hasError(error.type) && (form.get('amount').dirty || form.get('amount').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input pKeyFilter="int" formControlName="ceilingNum" name="ceilingNum" pInputText
+                        placeholder="تعداد تسهیلات" required />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.ceilingNum">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('ceilingNum').hasError(error.type) && (form.get('ceilingNum').dirty || form.get('ceilingNum').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="condition" type="text" pInputText placeholder="شرط تسهیلات"
+                        formControlName="condition" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.condition">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('condition').hasError(error.type) && (form.get('condition').dirty || form.get('condition').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="percent" type="text" pInputText placeholder="درصد سود " formControlName="percent" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.percent">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('percent').hasError(error.type) && (form.get('percent').dirty || form.get('percent').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-3">
+                    <input name="number" type="text" pInputText placeholder="تعداد اقساط " formControlName="number" />
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.number">
+                        <li class="font-small text-danger font-weight-bold list-inline-item"
+                            *ngIf="form.get('number').hasError(error.type) && (form.get('number').dirty || form.get('number').touched)">
+                            {{ error.message }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" pButton label=" ثبت " [disabled]="form.invalid"
+                        class="panel-dark-button mt-3"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
